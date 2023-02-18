@@ -1,7 +1,7 @@
-import { Nav } from "./header/navbar";
-import Header from "./header/header";
 import Footer from "./footer";
 import Head from "next/head";
+import Header from "./header";
+import { Nav } from "./navbar";
 
 interface LayoutProps extends React.PropsWithChildren {
   title: string;

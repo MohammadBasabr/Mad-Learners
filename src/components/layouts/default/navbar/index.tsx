@@ -13,10 +13,10 @@ export const Nav: React.FunctionComponent<NavProps> = (): JSX.Element => {
     <nav className="sticky top-0 z-50 flex h-12 w-full items-center justify-between bg-light-secondary px-5 dark:bg-dark-secondary">
       <div className="flex items-center">
         <ul className="hidden gap-5 sm:flex">
-          <NavItems title="خانه" url="/" />
-          <NavItems title="دوره‌ها" url="/movies" />
-          <NavItems title="درباره ما" url="/about" />
-          <NavItems title="تماس با ما" url="/contact" />
+          <NavItems title="home" url="/" />
+          <NavItems title="courses" url="/courses" />
+          <NavItems title="about" url="/about" />
+          <NavItems title="contact" url="/contact" />
         </ul>
         <Hamburger />
       </div>

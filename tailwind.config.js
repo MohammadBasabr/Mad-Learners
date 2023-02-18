@@ -4,7 +4,7 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      display: ["Vazirmatn", "sans-serif"],
+      display: ["Josefin Sans", "sans-serif"],
     },
     colors: {
       dark: {

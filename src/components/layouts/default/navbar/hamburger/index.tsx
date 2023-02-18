@@ -43,10 +43,10 @@ export const Hamburger: React.FunctionComponent<
           !toggle && "-translate-x-full"
         } left-0 z-[20] mt-1 flex h-screen w-screen flex-col items-center justify-center gap-3 bg-light-secondary p-5 transition-all duration-300 dark:bg-dark-secondary`}
       >
-        <NavItems onClick={closeHandler} title="خانه" url="/" />
-        <NavItems onClick={closeHandler} title="دوره‌ها" url="/movies" />
-        <NavItems onClick={closeHandler} title="درباره ما" url="/about" />
-        <NavItems onClick={closeHandler} title="تماس با ما" url="/contact" />
+        <NavItems onClick={closeHandler} title="home" url="/" />
+        <NavItems onClick={closeHandler} title="courses" url="/courses" />
+        <NavItems onClick={closeHandler} title="about" url="/about" />
+        <NavItems onClick={closeHandler} title="contact" url="/contact" />
       </ul>
     </>
   );

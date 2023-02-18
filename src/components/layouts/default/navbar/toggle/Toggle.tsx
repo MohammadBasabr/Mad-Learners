@@ -7,21 +7,21 @@ const Toggle: React.FunctionComponent<ToggleProps> = (): JSX.Element => {
   const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
-    // darkModeHandler();
+    darkModeHandler();
   }, []);
 
-  // const darkModeHandler = () => {
-  //   if (
-  //     localStorage.theme === "dark" ||
-  //     (!("theme" in localStorage) &&
-  //       window.matchMedia("(prefers-color-scheme: dark)").matches)
-  //   ) {
-  //     document.documentElement.className = "dark";
-  //     setToggle(false);
-  //   } else {
-  //     document.documentElement.className = "";
-  //   }
-  // };
+  const darkModeHandler = () => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.className = "dark";
+      setToggle(false);
+    } else {
+      document.documentElement.className = "";
+    }
+  };
 
   const toggleHandler = () => {
     setToggle(!toggle);
@@ -30,7 +30,7 @@ const Toggle: React.FunctionComponent<ToggleProps> = (): JSX.Element => {
     } else {
       localStorage.theme = "light";
     }
-    // darkModeHandler();
+    darkModeHandler();
   };
 
   return (

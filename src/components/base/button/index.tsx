@@ -2,8 +2,8 @@ import Link from "next/link";
 
 interface ButtonProps extends React.PropsWithChildren {
   title: string;
+  to: any;
   onClick?: any;
-  to?: any;
 }
 export const Button: React.FunctionComponent<ButtonProps> = ({
   title,
