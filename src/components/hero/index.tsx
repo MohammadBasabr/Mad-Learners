@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiOutlineLeftCircle, AiOutlineRightCircle } from "react-icons/ai";
 
@@ -59,29 +60,39 @@ export const Slider: React.FunctionComponent<SlideProps> = (): JSX.Element => {
         alt="background"
       />
 
-      <div className="relative flex h-full w-full items-center justify-center md:justify-start">
+      <div className="relative flex h-full w-full items-center backdrop-blur-sm md:backdrop-blur-0 justify-center md:justify-start">
+        <div className="absolute z-20 w-1/2 flex-col justify-center right-0 items-center text-dark-heading uppercase text-3xl hidden lg:flex font-display font-semibold">
+          <div>
+            <h1>"top technologies</h1>
+            <Link className=" dark:text-dark-hover" href="">
+              COURSES
+            </Link>
+            <h1>amoungs"</h1>
+          </div>
+        </div>
         {courses.map((_, index) => {
           return (
             <div
               key={index}
-              className={`absolute ml-0 transition-all duration-300 md:ml-10 ${
+              className={`absolute ml-0 flex overflow-hidden w-[calc(100%-100px)] md:w-auto justify-center rounded-xl bg-dark-error flex-col items-center md:ml-16 ${
                 currnetSlide !== index
-                  ? "-translate-x-full opacity-0"
-                  : "translate-x-1 opacity-100"
-              }`}
+                  ? "-translate-x-full opacity-0 -rotate-45"
+                  : "translate-x-0 opacity-100 rotate-0 transition-all duration-700 "
+              }  origin-bottom-left `}
             >
               <HeroMovieCart id={currnetSlide} courses={courses} />
-              <div className="absolute bottom-0 left-0 hidden h-0.5 w-full backdrop-brightness-50 md:flex">
+              <div className="h-1 w-full bg-light-primary dark:bg-dark-primary">
                 <div
                   className={`${
                     currnetSlide === index ? "w-0 animate-enlarge" : "w-full"
-                  }  h-full bg-light-hover `}
+                  } h-full bg-light-hover dark:bg-dark-hover`}
                 ></div>
               </div>
             </div>
           );
         })}
       </div>
+      {/* navigator */}
       <div className="absolute bottom-0 z-10 hidden h-5 w-full items-center justify-center gap-1 py-1 backdrop-brightness-50 md:flex">
         {courses.map((_, index) => {
           return (
@@ -97,15 +108,16 @@ export const Slider: React.FunctionComponent<SlideProps> = (): JSX.Element => {
           );
         })}
       </div>
-      <div className="absolute top-1/2 z-20 flex w-full justify-between p-4 text-light-hover opacity-30 transition-all duration-500 hover:opacity-100 dark:text-dark-hover">
+      {/* arrows */}
+      <div className="flex w-full justify-between text-light-hover opacity-30 transition-all duration-500 hover:opacity-100 dark:text-dark-hover">
         <button
-          className="cursor-pointer rounded-full bg-light-primary dark:bg-dark-primary"
+          className="absolute top-1/2 cursor-pointer rounded-full z-20 bg-light-primary dark:bg-dark-primary"
           onClick={prevHandler}
         >
           <AiOutlineLeftCircle size={40} />
         </button>
         <button
-          className="cursor-pointer items-center justify-center rounded-full bg-light-primary dark:bg-dark-primary"
+          className="absolute top-1/2 cursor-pointer right-0 items-center z-20 justify-center rounded-full bg-light-primary dark:bg-dark-primary"
           onClick={nextHandler}
         >
           <AiOutlineRightCircle size={40} />

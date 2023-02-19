@@ -29,7 +29,7 @@ export const Search: React.FunctionComponent<SearchProps> = (): JSX.Element => {
         value={input}
         className={`${
           search ? "w-0" : "w-40 md:w-64"
-        } rounded-md bg-light-primary pr-5 font-thin outline-none transition-all duration-300 ease-out dark:bg-dark-primary dark:text-dark-content`}
+        } rounded-md bg-light-primary px-2 font-thin outline-none transition-all duration-300 ease-out dark:bg-dark-primary dark:text-dark-content`}
       />
       <AiOutlineSearch
         onClick={searchCloseHandler}

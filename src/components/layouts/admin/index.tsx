@@ -1,7 +1,6 @@
 interface PanelAdminProps extends React.PropsWithChildren {}
 import Link from "next/link";
 import { FaChalkboardTeacher, FaHome, FaUser, FaUsers } from "react-icons/fa";
-import { Nav } from "../main/navbar";
 import Counter from "./counter";
 import Courses from "./form/courses";
 

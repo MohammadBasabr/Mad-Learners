@@ -8,7 +8,7 @@ interface AboutPageProps extends React.PropsWithChildren {
 const AboutPage: React.FunctionComponent<AboutPageProps> = (): JSX.Element => {
   return (
     <Layout title={"About"}>
-      <About />;
+      <About />
     </Layout>
   );
 };
