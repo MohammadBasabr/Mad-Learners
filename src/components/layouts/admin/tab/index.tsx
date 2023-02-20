@@ -13,7 +13,7 @@ const AdminTab: React.FunctionComponent<AdminTabProps> = ({
   to,
 }): JSX.Element => {
   const router = useRouter();
-  console.log(router.pathname === to);
+
   return (
     <Link
       href={to}

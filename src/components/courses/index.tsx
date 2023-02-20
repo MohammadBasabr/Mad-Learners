@@ -12,7 +12,8 @@ const Lessons: React.FunctionComponent<LessonsProps> = (): JSX.Element => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/lesson")
-      .then((response) => setLessons(response.data.result));
+      .then((response) => setLessons(response.data.result))
+      .catch((err) => console.log(err));
   }, []);
 
   return (

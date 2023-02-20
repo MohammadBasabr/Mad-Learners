@@ -10,7 +10,7 @@ const Couter: React.FunctionComponent<CouterProps> = ({
   number,
 }): JSX.Element => {
   const [counter, setCounter] = useState(0);
-  const timer = 30000;
+  const timer = 3000;
   let time: any;
 
   const handleCount = () => {

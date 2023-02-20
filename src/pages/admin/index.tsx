@@ -5,7 +5,7 @@ interface AdminPageProps extends React.PropsWithChildren {
 }
 
 const AdminPage: React.FunctionComponent<AdminPageProps> = (): JSX.Element => {
-  return <AdminLayout title={"Dashboard"} />;
+  return <AdminLayout />;
 };
 
 export default AdminPage;

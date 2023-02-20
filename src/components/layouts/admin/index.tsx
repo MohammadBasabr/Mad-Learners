@@ -1,5 +1,4 @@
 interface AdminLayoutProps extends React.PropsWithChildren {}
-import Head from "next/head";
 import Link from "next/link";
 import { FaChalkboardTeacher, FaHome, FaUsers } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
@@ -7,18 +6,13 @@ import { IoBookSharp } from "react-icons/io5";
 import Counter from "./counter";
 import AdminTab from "./tab";
 
-interface AdminLayoutProps extends React.PropsWithChildren {
-  title: string;
-}
+interface AdminLayoutProps extends React.PropsWithChildren {}
 const AdminLayout: React.FunctionComponent<AdminLayoutProps> = ({
   children,
-  title,
 }): JSX.Element => {
+  console.log("im rerendering");
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
       <section className="flex h-screen">
         <aside className="relative gap-3 items-center bg-dark-primary flex md:w-[300px] flex-col h-full text-dark-heading dark:bg-dark-primary">
           <Link

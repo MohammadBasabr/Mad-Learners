@@ -1,3 +1,4 @@
+import DashboardCourses from "@/components/dashboard/courses";
 import AdminLayout from "@/components/layouts/admin";
 
 interface CoursesPageProps extends React.PropsWithChildren {
@@ -8,8 +9,8 @@ const CoursesPage: React.FunctionComponent<
   CoursesPageProps
 > = (): JSX.Element => {
   return (
-    <AdminLayout title={"Courses"}>
-      <div>courses</div>
+    <AdminLayout>
+      <DashboardCourses />
     </AdminLayout>
   );
 };

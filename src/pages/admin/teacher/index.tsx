@@ -8,7 +8,7 @@ const TeachersPage: React.FunctionComponent<
   TeachersPageProps
 > = (): JSX.Element => {
   return (
-    <AdminLayout title="Teachers">
+    <AdminLayout>
       <div>Teachers</div>
     </AdminLayout>
   );
