@@ -1,11 +1,11 @@
-import PanelAdmin from "@/components/layouts/admin";
+import AdminLayout from "@/components/layouts/admin";
 
 interface AdminPageProps extends React.PropsWithChildren {
   title: string;
 }
 
 const AdminPage: React.FunctionComponent<AdminPageProps> = (): JSX.Element => {
-  return <PanelAdmin />;
+  return <AdminLayout title={"Dashboard"} />;
 };
 
 export default AdminPage;

@@ -1,5 +1,5 @@
 import { About } from "@/components/about";
-import { Layout } from "@/components/layouts/default";
+import { DefaultLayout } from "@/components/layouts/default";
 
 interface AboutPageProps extends React.PropsWithChildren {
   title: string;
@@ -7,9 +7,9 @@ interface AboutPageProps extends React.PropsWithChildren {
 
 const AboutPage: React.FunctionComponent<AboutPageProps> = (): JSX.Element => {
   return (
-    <Layout title={"About"}>
+    <DefaultLayout title={"About"}>
       <About />
-    </Layout>
+    </DefaultLayout>
   );
 };
 

@@ -1,5 +1,4 @@
-import Courses from "@/components/courses";
-import { DefaultLayout } from "@/components/layouts/default";
+import AdminLayout from "@/components/layouts/admin";
 
 interface LessonsPageProps extends React.PropsWithChildren {
   title: string;
@@ -9,9 +8,9 @@ const LessonsPage: React.FunctionComponent<
   LessonsPageProps
 > = (): JSX.Element => {
   return (
-    <DefaultLayout title="LessonsPage">
-      <Courses />
-    </DefaultLayout>
+    <AdminLayout title="Lessosns">
+      <div>Lessons</div>
+    </AdminLayout>
   );
 };
 

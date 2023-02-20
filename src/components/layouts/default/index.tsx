@@ -3,11 +3,11 @@ import Head from "next/head";
 import Header from "./header";
 import { Nav } from "./navbar";
 
-interface LayoutProps extends React.PropsWithChildren {
+interface DefaultLayoutProps extends React.PropsWithChildren {
   title: string;
 }
 
-export const Layout: React.FunctionComponent<LayoutProps> = ({
+export const DefaultLayout: React.FunctionComponent<DefaultLayoutProps> = ({
   children,
   title,
 }): JSX.Element => {
