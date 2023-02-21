@@ -1,3 +1,4 @@
+import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "../base/button";
@@ -32,6 +33,16 @@ const SignIn: React.FC = () => {
   useEffect(() => {
     return setErrors(validate(data, "signin"));
   }, [data, touched]);
+
+  const handleSubmit = () => {
+    axios
+      .post("http://localhost:5000/api/auth/login", {
+        email: data.email,
+        password: data.password,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
 
   const changeHandler = (event: { target: { name: any; value: any } }) => {
     setData({ ...data, [event.target.name]: event.target.value });
@@ -107,7 +118,7 @@ const SignIn: React.FC = () => {
             </h2>
           </Link>
           <div className="w-full md:w-1/2">
-            <Button title="Log In" to="#" />
+            <Button title="Log In" to="#" onClick={handleSubmit} />
           </div>
         </div>
       </form>
