@@ -37,7 +37,7 @@ export const HeroMovieCart: React.FunctionComponent<MovieCartProps> = ({
       </div>
       <div className="mt-1 w-full flex-col gap-1 flex">
         <Button title="enroll" to="#" />
-        <Button title="read more" to={`/movie/${id}`} />
+        <Button title="read more" to={`/lesson/${courses[id]._id}`} />
       </div>
     </div>
   );

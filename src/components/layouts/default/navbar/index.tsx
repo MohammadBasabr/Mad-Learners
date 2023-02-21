@@ -14,7 +14,7 @@ export const Nav: React.FunctionComponent<NavProps> = (): JSX.Element => {
       <div className="flex items-center">
         <ul className="hidden gap-5 sm:flex">
           <NavItems title="home" url="/" />
-          <NavItems title="courses" url="/courses" />
+          <NavItems title="courses" url="/lessons" />
           <NavItems title="about" url="/about" />
           <NavItems title="contact" url="/contact" />
         </ul>
