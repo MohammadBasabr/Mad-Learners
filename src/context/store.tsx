@@ -1,8 +1,9 @@
 import { ContextAction, ContextAppState } from '@/@types/context/context.type';
+import Lessons from '@/components/courses';
 import React, { useReducer } from 'react';
 import { createContext } from 'react';
 import { CourseReducer } from './course/course.reducer';
-const InitialState = {
+const InitialState:ContextAppState = {
     courses:{
         coursesList:[]
     }
@@ -15,7 +16,7 @@ const AppContext = createContext<{
     dispatch:()=>null
 })
 const CombineReducer = ({ courses}: ContextAppState,action: any) => ({
-    courses: CourseReducer(courses, action),
+    courses: CourseReducer(courses, action)
   });
 
 interface AppContextProviderProps extends React.PropsWithChildren{}
