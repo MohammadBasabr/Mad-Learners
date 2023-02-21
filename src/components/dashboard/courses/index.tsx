@@ -1,7 +1,7 @@
 import { ContextActionTypes } from "@/@types/context/context.type";
 import { Button } from "@/components/base/button";
 import { AppContext } from "@/context/store";
-import axios from "axios";
+import { httpRequest } from "@/services/httpRequest";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import AddCourse from "./addcourse";
 import CourseItem from "./courseItem";
@@ -12,7 +12,7 @@ const DashboardCourses: React.FunctionComponent<DashboardCoursesProps> = (): JSX
   const {state,dispatch} = useContext(AppContext)
   const [open,setOpen] = useState(false)
     const fetchCourses = useCallback(async () => {
-        const response = await axios.get("http://localhost:5000/api/lesson");
+        const response = await httpRequest.getCourses();
         if (response.status === 200) {
          // console.log(response.data.result)
           dispatch({

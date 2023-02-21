@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import {CiCircleRemove} from 'react-icons/ci'
 import {AiOutlineEdit} from 'react-icons/ai'
+import { httpRequest } from '@/services/httpRequest';
 interface CourseItemProps extends React.PropsWithChildren{
     topics: string[];
     _id: string;
@@ -81,14 +82,14 @@ const CourseItem: React.FunctionComponent<CourseItemProps> = ({
             category:inputCategory
         }
         //console.log(editedData)
-        const resp = await axios.put(`http://localhost:5000/api/lesson/${id}`,editedData).then((response) => {
+        const resp = await httpRequest.editCourse(id,editedData).then((response) => {
            // console.log('sd')
-            console.log(response.data.result)
+            //console.log(response.data.result)
             dispatch({
             type:ContextActionTypes.EDIT_Current_course,
             payload:{
                 id:id,
-                data:editedData
+                data:response.data.result
             }
             })
            
@@ -107,17 +108,17 @@ const CourseItem: React.FunctionComponent<CourseItemProps> = ({
     return ( <>
 
     
-    <tr onClick={()=>editCourseHandler(_id)}>
-        <td className='border border-r-dark-content'>{edit ? (<input value={inputImage} onChange={(e)=>editCourseImageHandler(e)}/>): (<img src={image} width={100} height={100}/>)}</td>
+    <tr onClick={()=>editCourseHandler(_id)} className="text-lg text-center">
+        <td className='border border-r-dark-content'>{edit ? (<input value={inputImage} onChange={(e)=>editCourseImageHandler(e)} className="text-dark-secondary"/>): (<img src={image} width={100} height={100}/>)}</td>
         <td className='border border-r-dark-content'>{CourseName}</td>
-        <td className='border border-r-dark-content break-normal'>{edit ? (<input value={inputDescription} onChange={(e)=>editCourseDescriptionHandler(e)}/>) : (description)}</td>
+        <td className='border border-r-dark-content break-normal'>{edit ? (<input value={inputDescription} onChange={(e)=>editCourseDescriptionHandler(e)} className="text-dark-secondary" />) : (description)}</td>
         <td className='border border-r-dark-content'>
-        {edit ? (<input value={inputTopics} onChange={(e)=>editCourseTopicsHandler(e)}/>) : (topics.map((item)=>(item+' ; ')))}
+        {edit ? (<input value={inputTopics} onChange={(e)=>editCourseTopicsHandler(e)} className="text-dark-secondary" />) : (topics.map((item)=>(item+' ; ')))}
         
         </td>
-        <td className='border border-r-dark-content'>{edit ? (<input value={inputCategory} onChange={(e)=>editCourseCategoryHandler(e)}/>) : (category)}</td>
-        <td className='border border-r-dark-content'><CiCircleRemove className='text-dark-error' onClick={()=>removeCourse(_id)}/>
-        <AiOutlineEdit onClick={()=>updateCourse(_id)}/>
+        <td className='border border-r-dark-content'>{edit ? (<input value={inputCategory} onChange={(e)=>editCourseCategoryHandler(e)} className="text-dark-secondary" />) : (category)}</td>
+        <td className='border border-r-dark-content'><CiCircleRemove className='hover:text-dark-error cursor-pointer' onClick={()=>removeCourse(_id)} size={30}/>
+        <AiOutlineEdit onClick={()=>updateCourse(_id)} className="cursor-pointer hover:text-dark-error" size={30}/>
         </td>
     </tr>
     </> );

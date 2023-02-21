@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
-import axios from 'axios';
 import { AppContext } from '@/context/store';
 import { ContextActionTypes } from '@/@types/context/context.type';
+import { httpRequest } from '@/services/httpRequest';
 interface AddCourseProps extends React.PropsWithChildren {
 }
 interface Values {
@@ -41,7 +41,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
             values.category = Number(values.category)
             //console.log(values)
             try{
-                const resp = await axios.post('http://localhost:5000/api/lesson/add',values);
+                const resp = await httpRequest.addCourse(values)
                 dispatch({
                     type:ContextActionTypes.ADD_NEW_Course,
                     payload:resp.data.result
