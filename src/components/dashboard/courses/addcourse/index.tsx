@@ -20,7 +20,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
       <Formik 
         initialValues={{
             lessonName: '',
-            topics:['a'],
+            topics:[''],
             description:'',
             image: '',
             category:0
