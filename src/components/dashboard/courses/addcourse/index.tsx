@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import axios from 'axios';
+import { AppContext } from '@/context/store';
+import { ContextActionTypes } from '@/@types/context/context.type';
 interface AddCourseProps extends React.PropsWithChildren {
 }
 interface Values {
@@ -12,12 +14,13 @@ interface Values {
 }
 const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
     const [open,setOpen] = useState(true)
+    const {dispatch} = useContext(AppContext).dispatch;
     return ( <>
     <div className={open ? `p-2 w-full`:`hidden p-2 w-full`}>
       <Formik 
         initialValues={{
             lessonName: '',
-            topics:[''],
+            topics:['a'],
             description:'',
             image: '',
             category:0
@@ -39,6 +42,11 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
             //console.log(values)
             try{
                 const resp = await axios.post('http://localhost:5000/api/lesson/add',values);
+                dispatch({
+                    type:ContextActionTypes.ADD_NEW_Course,
+                    payload:resp.data.result
+                })
+                //console.log(resp.data.result)
             }catch(error){
                 console.log(error)
             }

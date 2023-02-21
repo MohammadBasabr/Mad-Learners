@@ -2,7 +2,7 @@ import { ContextActionTypes } from "@/@types/context/context.type";
 import { Button } from "@/components/base/button";
 import { AppContext } from "@/context/store";
 import axios from "axios";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import AddCourse from "./addcourse";
 import CourseItem from "./courseItem";
 
@@ -14,7 +14,7 @@ const DashboardCourses: React.FunctionComponent<DashboardCoursesProps> = (): JSX
     const fetchCourses = useCallback(async () => {
         const response = await axios.get("http://localhost:5000/api/lesson");
         if (response.status === 200) {
-          console.log(response.data.result)
+         // console.log(response.data.result)
           dispatch({
             type: ContextActionTypes.Get_All_Courses,
             payload:response.data.result
@@ -56,7 +56,9 @@ const DashboardCourses: React.FunctionComponent<DashboardCoursesProps> = (): JSX
               <tbody>
            
             {state.courses.coursesList.map((item) => (
-                <CourseItem key={item._id}
+                <CourseItem 
+                
+                key={item._id}
                 topics={item.topics}
                 _id={item._id}
                 CourseName={item.lessonName}
