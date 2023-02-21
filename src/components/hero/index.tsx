@@ -11,11 +11,10 @@ export const Slider: React.FunctionComponent<SlideProps> = (): JSX.Element => {
   const [currnetSlide, setCurrentSlide] = useState(0);
   let sliderInterval: any;
   const autoPlay: boolean = true;
-  const slideSpeed: number = 5000;
+  const slideSpeed: number = 3000;
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    setCurrentSlide(0);
     axios
       .get("http://localhost:5000/api/lesson/list?pagenumber=1&pagesize=8")
       .then((res) => setCourses(res.data.result.lessons));
@@ -27,7 +26,7 @@ export const Slider: React.FunctionComponent<SlideProps> = (): JSX.Element => {
   }, [currnetSlide]);
 
   const slideHandler = () => {
-    currnetSlide < courses.length - 1
+    currnetSlide !== courses.length - 1
       ? setCurrentSlide(currnetSlide + 1)
       : setCurrentSlide(0);
   };
@@ -51,9 +50,9 @@ export const Slider: React.FunctionComponent<SlideProps> = (): JSX.Element => {
       ? setCurrentSlide(currnetSlide - 1)
       : setCurrentSlide(courses.length - 1);
   };
-  console.log(courses[currnetSlide]);
+
   return (
-    <section className="relative h-[calc(100vh-96px)] w-full select-none bg-light-primary dark:bg-dark-primary md:h-[calc(100vh-176px)]">
+    <section className="relative h-[calc(100vh-96px)] w-full select-none bg-light-primary overflow-hidden dark:bg-dark-primary md:h-[calc(100vh-176px)]">
       <img
         className="absolute top-0 left-0 h-full w-full object-cover object-center"
         src="/assets/background.jpg"
@@ -62,12 +61,25 @@ export const Slider: React.FunctionComponent<SlideProps> = (): JSX.Element => {
 
       <div className="relative flex h-full w-full items-center backdrop-blur-sm md:backdrop-blur-0 justify-center md:justify-start">
         <div className="absolute z-20 w-1/2 flex-col justify-center right-0 items-center text-dark-heading uppercase text-3xl hidden lg:flex font-display font-semibold">
-          <div>
-            <h1>"top technologies</h1>
-            <Link className=" dark:text-dark-hover" href="">
-              COURSES
-            </Link>
-            <h1>amoungs"</h1>
+          <div className="flex flex-col justify-center items-center">
+            <h1>"enroll</h1>
+            <div className="relative h-10 flex w-[800px]">
+              {courses.map((course: any, index) => {
+                return (
+                  <h2
+                    className={`${
+                      index === currnetSlide
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-0 translate-x-96"
+                    } absolute h-full flex justify-center items-center text-dark-hover w-full transition-all duration-300`}
+                    key={index}
+                  >
+                    {course.lessonName}
+                  </h2>
+                );
+              })}
+            </div>
+            <h1>and become a master programmer"</h1>
           </div>
         </div>
         {courses.map((_, index) => {

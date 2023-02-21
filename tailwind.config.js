@@ -32,7 +32,7 @@ module.exports = {
         },
       },
       animation: {
-        enlarge: "enlarge 5s linear",
+        enlarge: "enlarge 3s linear",
       },
     },
   },
