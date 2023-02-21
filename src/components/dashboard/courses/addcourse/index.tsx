@@ -14,7 +14,7 @@ interface Values {
 }
 const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
     const [open,setOpen] = useState(true)
-    const {dispatch} = useContext(AppContext).dispatch;
+    const dispatch = useContext(AppContext).dispatch;
     return ( <>
     <div className={open ? `p-2 w-full`:`hidden p-2 w-full`}>
       <Formik 

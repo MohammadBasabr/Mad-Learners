@@ -5,6 +5,7 @@ export type CreateContext = {
 export enum ContextActionTypes{
     Get_All_Courses = "Get_All_Courses",
     ADD_NEW_Course = "ADD_NEW_Course",
+    EDIT_Current_course = "EDIT_Current_course",
     Delete_Current_course = "Delete_Current_course"
 }
 export type ContextAction<T, K> = {
