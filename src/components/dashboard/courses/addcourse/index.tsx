@@ -27,10 +27,16 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
             { setSubmitting }: FormikHelpers<Values>
           ) => {
             const str = values.topics+'';
-            const arr = str.split(';');
-            values.topics =arr;
+            if(str.includes(';')){
+                const arr = str.split(';');
+                values.topics =arr;
+            }else{
+                const arr = str.split(' ');
+                values.topics =arr;
+               // console.log(typeof(values.topics))
+            }
             values.category = Number(values.category)
-            console.log(values)
+            //console.log(values)
             try{
                 const resp = await axios.post('http://localhost:5000/api/lesson/add',values);
             }catch(error){
@@ -47,7 +53,7 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
           <label htmlFor="description">description</label>
           <Field id="description" name="description" />
           <label htmlFor="topics">topics</label>
-          <Field id="topics" name="topics" placeholder="separate items using ;" />
+          <Field id="topics" name="topics"  />
           <label htmlFor="image">image</label>
           <Field id="image" name="image"  />
           <label htmlFor="category">category</label>
