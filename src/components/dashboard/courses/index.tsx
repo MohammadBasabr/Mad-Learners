@@ -2,7 +2,7 @@ import { ContextActionTypes } from "@/@types/context/context.type";
 import { Button } from "@/components/base/button";
 import { AppContext } from "@/context/store";
 import axios from "axios";
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import AddCourse from "./addcourse";
 import CourseItem from "./courseItem";
 
@@ -10,6 +10,7 @@ interface DashboardCoursesProps extends React.PropsWithChildren {}
 
 const DashboardCourses: React.FunctionComponent<DashboardCoursesProps> = (): JSX.Element => {
   const {state,dispatch} = useContext(AppContext)
+  const [open,setOpen] = useState(false)
     const fetchCourses = useCallback(async () => {
         const response = await axios.get("http://localhost:5000/api/lesson");
         if (response.status === 200) {
@@ -25,12 +26,18 @@ const DashboardCourses: React.FunctionComponent<DashboardCoursesProps> = (): JSX
         fetchCourses();
       }, [fetchCourses]);
 
-
+      const openDialogBox =()=>{
+        setOpen((perv)=>!perv);
+        //console.log(open)
+      }
+      useEffect(() => {
+        openDialogBox();
+      }, []);
       return (
         <>
-       <div className="w-80 p-5"> <Button title="Add Course"  to="#" />
+       <div className="w-80 p-5"> <Button title="Add Course"  onClick={openDialogBox} to=""/>
        
-       <AddCourse />
+       {!open ? (<AddCourse />):('')}
        
        </div>
         {state.courses.coursesList.length === 0 ? (

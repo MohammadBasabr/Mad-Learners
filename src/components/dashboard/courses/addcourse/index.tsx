@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import axios from 'axios';
 interface AddCourseProps extends React.PropsWithChildren {
@@ -11,10 +11,10 @@ interface Values {
     category:number;
 }
 const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
-  
+    const [open,setOpen] = useState(true)
     return ( <>
-    <div>
-      <Formik
+    <div className={open ? `p-2 w-full`:`hidden p-2 w-full`}>
+      <Formik 
         initialValues={{
             lessonName: '',
             topics:[''],
@@ -43,22 +43,22 @@ const AddCourse: React.FunctionComponent<AddCourseProps> = () => {
                 console.log(error)
             }
             
-
+            setOpen(false);
 
         }}
     >
-        <Form>
+        <Form className='flex flex-col'>
           <label htmlFor="lessonName">lessonName</label>
-          <Field id="lessonName" name="lessonName" />
+          <Field id="lessonName" name="lessonName" className="p-2 outline-none rounded-md"/>
           <label htmlFor="description">description</label>
-          <Field id="description" name="description" />
+          <Field id="description" name="description" className="p-2 outline-none rounded-md"/>
           <label htmlFor="topics">topics</label>
-          <Field id="topics" name="topics"  />
+          <Field id="topics" name="topics"  className="p-2 outline-none rounded-md"/>
           <label htmlFor="image">image</label>
-          <Field id="image" name="image"  />
+          <Field id="image" name="image" className="p-2 outline-none rounded-md" />
           <label htmlFor="category">category</label>
-          <Field id="category" name="category" />
-          <button type="submit">Submit</button>
+          <Field id="category" name="category" className="p-2 outline-none rounded-md"/>
+          <button type="submit" className='mt-2 p-2 uppercase font-bold bg-dark-hover text-dark-secondary rounded-lg'>Submit</button>
         </Form>
       </Formik>
     </div>
