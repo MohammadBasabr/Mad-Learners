@@ -38,7 +38,7 @@ const forgetPassword: React.FC = () => {
     var config = {
       method: 'post',
     maxBodyLength: Infinity,
-      url: 'http://localhost:5000/api/auth/login',
+      url: 'http://localhost:5000/api/forgetpassword',
       headers: { 
         'Content-Type': 'application/json'
       },

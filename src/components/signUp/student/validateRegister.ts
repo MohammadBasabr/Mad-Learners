@@ -44,8 +44,8 @@ export const validate = (
 
   if (!data.password) {
     errors.password = "Password is required";
-  } else if (data.password.length < 6) {
-    errors.password = "Password needs to be 6 character or more";
+  } else if (data.password.length < 8) {
+    errors.password = "Password needs to be 8 character or more";
   } else {
     delete errors.password;
   }
@@ -63,11 +63,17 @@ export const validate = (
       delete errors.phoneNumber;
     }    
 
-    let pattern = new RegExp("([^\d])\d{10}([^\d])");
-    if (!data.nationalId.trim()) {
+    let pattern = /^\d{10}$/;
+    if (!pattern.test(data.nationalId)) {
       errors.nationalId = "Valid nationalId required";
     } else {
       delete errors.nationalId;
+    } 
+
+    if (!data.birthDate.trim()) {
+      errors.birthDate = "Valid nationalId required";
+    } else {
+      delete errors.birthDate;
     } 
 
     if (!data.confirmPassword) {

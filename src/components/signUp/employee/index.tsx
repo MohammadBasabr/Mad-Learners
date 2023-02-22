@@ -95,7 +95,7 @@ const SignUp: React.FC = () => {
     var config = {
       method: 'post',
     maxBodyLength: Infinity,
-      url: 'http://localhost:5000/api/auth/register',
+      url: 'http://localhost:5000/api/auth/employee/register',
       headers: { 
         'Content-Type': 'application/json'
       },
