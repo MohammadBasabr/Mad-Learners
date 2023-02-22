@@ -1,5 +1,5 @@
 import { DefaultLayout } from "@/components/layouts/default";
-import SignUp from "@/components/signUp";
+import SignUp from "@/components/signUp/student";
 
 interface SignUpPageProps extends React.PropsWithChildren {
   title: string;

@@ -5,6 +5,10 @@ export const validate = (
     name: string;
     confirmPassword: any;
     isAccepted: any;
+    birthDate: string;
+    phoneNumber: string;
+    nationalId: string;
+    profile: string;
   },
   type: string
 ) => {
@@ -14,12 +18,20 @@ export const validate = (
     email?: string;
     confirmPassword?: string;
     isAccepted?: string;
+    birthDate?: string;
+    phoneNumber?: string;
+    nationalId?: string;
+    profile?: string;    
   } = {
     name: "",
     password: "",
     email: "",
     confirmPassword: "",
     isAccepted: "",
+    birthDate: "",
+    phoneNumber: "",
+    nationalId: "",
+    profile: "",     
   };
 
   if (!data.email) {
@@ -44,6 +56,19 @@ export const validate = (
     } else {
       delete errors.name;
     }
+
+    if (!/^\d{2}-\d{3}-\d{3}-\d{3}|\d{11}$/gm.test(data.phoneNumber)) {
+      errors.phoneNumber = "Valid phoneNumber required";
+    } else {
+      delete errors.phoneNumber;
+    }    
+
+    let pattern = new RegExp("([^\d])\d{10}([^\d])");
+    if (!pattern.test(data.nationalId)) {
+      errors.nationalId = "Valid nationalId required";
+    } else {
+      delete errors.nationalId;
+    } 
 
     if (!data.confirmPassword) {
       errors.confirmPassword = "Confirm password";
