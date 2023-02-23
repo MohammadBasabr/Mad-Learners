@@ -1,22 +1,18 @@
-import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Button } from "../base/button";
+import LessonCard from "./lessonCard";
 
 interface LessonDetailProps extends React.PropsWithChildren {
-  id: any;
+  data: any;
 }
 
 const LessonDetail: React.FunctionComponent<LessonDetailProps> = ({
-  id,
+  data,
 }): JSX.Element => {
-  const [data, setData]: any[] = useState([]);
+  let totalCost = 0;
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/lesson/${id}`)
-      .then((res) => setData(res.data.result))
-      .catch((err) => console.log(err));
+  data.courses.map((course: any) => {
+    totalCost += course.cost;
   });
 
   return (
@@ -48,6 +44,12 @@ const LessonDetail: React.FunctionComponent<LessonDetailProps> = ({
               </span>
               {data.description}
             </p>
+            <p>
+              <span className="text-light-hover dark:text-dark-hover">
+                Total Cost:{" "}
+              </span>
+              $ {totalCost}
+            </p>
           </div>
           <div className="w-full flex flex-col justify-center items-center p-3 gap-2">
             <Button title={"enroll now"} to="#" />
@@ -61,12 +63,22 @@ const LessonDetail: React.FunctionComponent<LessonDetailProps> = ({
           </div>
         </div>
       </div>
-      <section
+      <div
         id="courses"
         className="md:w-[calc(100%-400px)] p-3 w-full h-[calc(100vh-96px)] md:h-full"
       >
-        <div className="bg-light-secondary dark:bg-dark-secondary w-full h-full"></div>
-      </section>
+        <div className="w-full h-full gap-2 flex flex-col">
+          {data.courses.length
+            ? data.courses.map((course: any) => {
+                return (
+                  <div key={course._id}>
+                    <LessonCard lesson={course} />
+                  </div>
+                );
+              })
+            : "no lesson is available"}
+        </div>
+      </div>
     </section>
   );
 };

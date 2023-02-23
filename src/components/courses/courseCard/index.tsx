@@ -34,8 +34,8 @@ const CourseCard: React.FunctionComponent<CourseCardProps> = ({
           })}
         </ul>
       </div>
-      <div className="flex w-full flex-initial  gap-1">
-        <Button title="more details" to="#" />
+      <div className="flex w-full flex-initial gap-1">
+        <Button title="more details" to={`/lesson/${courses[id]._id}`} />
         <Button title="enroll now" to="#" />
       </div>
     </div>

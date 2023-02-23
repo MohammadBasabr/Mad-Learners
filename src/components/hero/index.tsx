@@ -17,7 +17,8 @@ export const Slider: React.FunctionComponent<SlideProps> = (): JSX.Element => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/lesson/list?pagenumber=1&pagesize=8")
-      .then((res) => setCourses(res.data.result.lessons));
+      .then((res) => setCourses(res.data.result.lessons))
+      .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
