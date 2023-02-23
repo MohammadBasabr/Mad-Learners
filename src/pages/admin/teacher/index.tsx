@@ -1,3 +1,4 @@
+import DashboardTeacher from "@/components/dashboard/teachers";
 import AdminLayout from "@/components/layouts/admin";
 
 interface TeachersPageProps extends React.PropsWithChildren {
@@ -9,7 +10,7 @@ const TeachersPage: React.FunctionComponent<
 > = (): JSX.Element => {
   return (
     <AdminLayout>
-      <div>Teachers</div>
+      <DashboardTeacher />
     </AdminLayout>
   );
 };
