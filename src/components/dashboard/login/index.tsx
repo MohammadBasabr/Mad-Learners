@@ -22,43 +22,40 @@ const DashboardSignIn: React.FunctionComponent<DashboardSignInProps> = () => {
             email: "",
             password: "",
           }}
-          onSubmit={
-            //npm i react-toastify  for validation
-            async (
-              values: Values,
-              { setSubmitting }: FormikHelpers<Values>
-            ) => {
-              if (values.email === "" || values.password === "") {
-                alert("Username and Password is required");
+          onSubmit={async (
+            values: Values,
+            { setSubmitting }: FormikHelpers<Values>
+          ) => {
+            if (values.email === "" || values.password === "") {
+              alert("Username and Password is required");
+              return false;
+            }
+            const dataValidation = validate(values, "signin");
+            if (dataValidation.email) {
+              alert(dataValidation.email);
+              return false;
+            }
+            if (dataValidation.password) {
+              alert(dataValidation.password);
+              return false;
+            }
+            try {
+              const resp = await httpRequest.loginEmployee(values);
+              dispatch({
+                type: ContextActionTypes.Login_Success,
+                payload: {
+                  id: resp.data.result.employeeModel._id,
+                  token: resp.data.result.jwtToken,
+                },
+              });
+              router.push("/admin");
+            } catch (error: any) {
+              if (error.response.status == "400") {
+                alert("User has not been registered");
                 return false;
-              }
-              const dataValidation = validate(values, "signin");
-              if (dataValidation.email) {
-                alert(dataValidation.email);
-                return false;
-              }
-              if (dataValidation.password) {
-                alert(dataValidation.password);
-                return false;
-              }
-              try {
-                const resp = await httpRequest.loginEmployee(values);
-                dispatch({
-                  type: ContextActionTypes.Login_Success,
-                  payload: {
-                    id: resp.data.result.employeeModel._id,
-                    token: resp.data.result.jwtToken,
-                  },
-                });
-                router.push("/admin");
-              } catch (error: any) {
-                if (error.response.status == "400") {
-                  alert("User has not been registered");
-                  return false;
-                }
               }
             }
-          }
+          }}
         >
           <Form className="border-1 border-black w-full rounded-[10px] border-solid p-2 md:w-[800px] flex flex-col">
             <label

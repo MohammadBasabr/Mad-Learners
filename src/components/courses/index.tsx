@@ -32,7 +32,7 @@ const Lessons: React.FunctionComponent<LessonsProps> = (): JSX.Element => {
   console.log(lessons);
   return (
     <section>
-      <div className="md:min-h-[calc(100vh-176px)] relative grid w-full grid-cols-1 dark:bg-dark-primary bg-light-primary px-5 pt-5 gap-3 md:grid-cols-2 lg:grid-cols-4">
+      <div className="md:min-h-[calc(100vh-176px)] relative grid-rows-2 grid w-full grid-cols-1 dark:bg-dark-primary bg-light-primary px-5 pt-5 gap-3 md:grid-cols-2 lg:grid-cols-4">
         {lessons[0]
           ? lessons.map((lesson: any, index: number) => {
               return (
