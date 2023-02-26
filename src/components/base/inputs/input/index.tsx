@@ -19,8 +19,6 @@ const Input: React.FunctionComponent<InputProps> = ({
   onChange,
   onFocus,
 }): JSX.Element => {
-  console.log(touch.id);
-  console.log(error.id);
   return (
     <input
       id={id}

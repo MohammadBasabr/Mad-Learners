@@ -1,5 +1,5 @@
 import { DefaultLayout } from "@/components/layouts/default";
-import SignIn from "@/components/signIn";
+import SignIn from "@/components/signIn/student";
 
 interface SignInPageProps extends React.PropsWithChildren {
   title: string;
