@@ -8,7 +8,7 @@ import swal from "sweetalert";
 
 import { validate } from "./validateLogin";
 
-const SignIn: React.FC = () => {
+const EmployeeSignIn: React.FC = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -37,28 +37,28 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = () => {
     let body = JSON.stringify({
-      "email": data.email,
-      "password": data.password,
+      email: data.email,
+      password: data.password,
     });
-    
+
     var config = {
-      method: 'post',
-    maxBodyLength: Infinity,
-      url: 'http://localhost:5000/api/auth/employee/login',
-      headers: { 
-        'Content-Type': 'application/json'
+      method: "post",
+      maxBodyLength: Infinity,
+      url: "http://localhost:5000/api/auth/employee/login",
+      headers: {
+        "Content-Type": "application/json",
       },
-      data : body
+      data: body,
     };
-    
+
     axios(config)
-    .then(function (response) {
-      swal(response.data.message[0].message);
-    })
-    .catch(function (error) {
-      console.log(error.response);
-      swal(error.response.data.message[0].message);
-    });
+      .then(function (response) {
+        swal(response.data.message[0].message);
+      })
+      .catch(function (error) {
+        console.log(error.response);
+        swal(error.response.data.message[0].message);
+      });
   };
 
   const changeHandler = (event: { target: { name: any; value: any } }) => {
@@ -82,7 +82,7 @@ const SignIn: React.FC = () => {
     }
   };
   return (
-    <div className="flex h-[calc(100vh-96px)] w-full items-center justify-center bg-light-primary dark:bg-dark-primary md:h-[calc(100vh-176px)] md:p-6">
+    <div className="flex h-full w-full items-center justify-center bg-light-primary dark:bg-dark-primary md:p-6">
       <form
         onSubmit={submitHandler}
         className="border-1 border-black w-full rounded-[10px] border-solid p-2 md:w-[800px]"
@@ -135,7 +135,7 @@ const SignIn: React.FC = () => {
             </h2>
           </Link>
           <div className="w-full md:w-1/2">
-            <Button title="Log In" to="#" onClick={handleSubmit} />
+            <Button title="employee login" to="#" onClick={handleSubmit} />
           </div>
         </div>
       </form>
@@ -143,4 +143,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default EmployeeSignIn;
