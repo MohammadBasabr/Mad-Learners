@@ -4,27 +4,23 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../base/button";
 import Error from "../base/inputs/error";
 import Input from "../base/inputs/input";
+import swal from "sweetalert";
 
-import { validate } from "./validateLogin";
+import { validate } from "./validateResetPassword";
 
-const SignIn: React.FC = () => {
+const resetPassword: React.FC = () => {
   const [data, setData] = useState({
-    email: "",
     password: "",
   });
   let touch: {
-    email: boolean;
     password: boolean;
   } = {
     password: false,
-    email: false,
   };
   let error: {
     password?: string;
-    email?: string;
   } = {
     password: "",
-    email: "",
   };
 
   const [errors, setErrors] = useState(error);
@@ -35,13 +31,27 @@ const SignIn: React.FC = () => {
   }, [data, touched]);
 
   const handleSubmit = () => {
-    axios
-      .post("http://localhost:5000/api/auth/login", {
-        email: data.email,
-        password: data.password,
-      })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+    let body = JSON.stringify({
+      "password": data.password,
+    });
+    
+    var config = {
+      method: 'post',
+    maxBodyLength: Infinity,
+      url: 'http://localhost:5000/api/resetPassword/:token',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : body
+    };
+    
+    axios(config)
+    .then(function (response) {
+      swal(response.data.message[0].message);
+    })
+    .catch(function (error) {
+      swal(error.response.data.message[0].message);
+    });
   };
 
   const changeHandler = (event: { target: { name: any; value: any } }) => {
@@ -55,11 +65,8 @@ const SignIn: React.FC = () => {
   const submitHandler = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if (!Object.keys(errors).length) {
-      alert("You signed in successfully");
     } else {
-      alert("Invalid data");
       setTouched({
-        email: true,
         password: true,
       });
     }
@@ -71,26 +78,8 @@ const SignIn: React.FC = () => {
         className="border-1 border-black w-full rounded-[10px] border-solid p-2 md:w-[800px]"
       >
         <h2 className="mb-[40px] text-left text-lg font-bold uppercase  text-light-heading dark:text-dark-heading">
-          Sign In
+          Reset Password
         </h2>
-        <fieldset className="mb-[10px] flex h-[75px] flex-col items-center justify-between border-0 p-0 text-light-content dark:text-dark-content">
-          <label
-            htmlFor="email"
-            className="mb-[10px] w-full text-left text-light-content dark:text-dark-content"
-          >
-            Email
-          </label>
-          <Input
-            id="email"
-            type="email"
-            data={data}
-            error={error}
-            touch={touched}
-            onChange={changeHandler}
-            onFocus={touchHandler}
-          />
-          {touched.email && errors.email && <Error errorName={errors.email} />}
-        </fieldset>
         <fieldset className="mb-[10px] flex h-[75px] flex-col items-center justify-between border-0 p-0 text-light-content dark:text-dark-content">
           <label
             htmlFor="password"
@@ -112,13 +101,8 @@ const SignIn: React.FC = () => {
           )}
         </fieldset>
         <div className="mt-10 flex w-full flex-col-reverse items-center justify-between gap-5 md:flex-row">
-          <Link href="/signup">
-            <h2 className="text-xl uppercase text-light-hover">
-              create an account
-            </h2>
-          </Link>
           <div className="w-full md:w-1/2">
-            <Button title="Log In" to="#" onClick={handleSubmit} />
+            <Button title="Reset password" to="#" onClick={handleSubmit} />
           </div>
         </div>
       </form>
@@ -126,4 +110,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default resetPassword;
