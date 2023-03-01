@@ -57,7 +57,11 @@ const EmployeeSignIn: React.FC = () => {
       })
       .catch(function (error) {
         console.log(error.response);
-        swal(error.response.data.message[0].message);
+        if (data.email == "" || data.password == "") {
+          swal(error.response.data.message[0].message);
+        } else {
+          swal(error.response.data.message.message[0].message);
+        }
       });
   };
 
@@ -87,9 +91,6 @@ const EmployeeSignIn: React.FC = () => {
         onSubmit={submitHandler}
         className="border-1 border-black w-full rounded-[10px] border-solid p-2 md:w-[800px]"
       >
-        <h2 className="mb-[40px] text-left text-lg font-bold uppercase  text-light-heading dark:text-dark-heading">
-          Sign In
-        </h2>
         <fieldset className="mb-[10px] flex h-[75px] flex-col items-center justify-between border-0 p-0 text-light-content dark:text-dark-content">
           <label
             htmlFor="email"
@@ -129,13 +130,22 @@ const EmployeeSignIn: React.FC = () => {
           )}
         </fieldset>
         <div className="mt-10 flex w-full flex-col-reverse items-center justify-between gap-5 md:flex-row">
-          <Link href="/signup">
-            <h2 className="text-xl uppercase text-light-hover">
-              create an account
-            </h2>
-          </Link>
-          <div className="w-full md:w-1/2">
-            <Button title="employee login" to="#" onClick={handleSubmit} />
+          <div className="flex flex-row justify-between lg:w-full md:w-1/2">
+            <Link href="/signup">
+              <h2 className="text-xl uppercase text-light-hover">
+                create an account
+              </h2>
+            </Link>
+            <Link href="/forgetPassword">
+              <h2 className="text-xl uppercase text-light-hover">
+                forget your password? 
+              </h2>
+            </Link>          
+          </div>
+        </div>
+        <div className="mt-10 flex w-full flex-col-reverse items-center justify-between gap-5 md:flex-row">
+          <div className="lg:w-full md:w-1/2">
+            <Button title="Log In" to="#" onClick={handleSubmit} />
           </div>
         </div>
       </form>

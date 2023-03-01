@@ -8,7 +8,7 @@ import swal from "sweetalert";
 
 import { validate } from "./validateEmail";
 
-const forgetPassword: React.FC = () => {
+const ForgetPassword: React.FC = () => {
   const [data, setData] = useState({
     email: "",
   });
@@ -78,9 +78,6 @@ const forgetPassword: React.FC = () => {
         onSubmit={submitHandler}
         className="border-1 border-black w-full rounded-[10px] border-solid p-2 md:w-[800px]"
       >
-        <h2 className="mb-[40px] text-left text-lg font-bold uppercase  text-light-heading dark:text-dark-heading">
-          Sign In
-        </h2>
         <fieldset className="mb-[10px] flex h-[75px] flex-col items-center justify-between border-0 p-0 text-light-content dark:text-dark-content">
           <label
             htmlFor="email"
@@ -100,6 +97,11 @@ const forgetPassword: React.FC = () => {
           {touched.email && errors.email && <Error errorName={errors.email} />}
         </fieldset>
         <div className="mt-10 flex w-full flex-col-reverse items-center justify-between gap-5 md:flex-row">
+          <Link className="w-full md:w-1/2" href="/signin">
+            <h2 className="text-xl w-full text-center uppercase text-light-hover">
+              Sign In
+            </h2>
+          </Link>
           <div className="w-full md:w-1/2">
             <Button title="Get Link" to="#" onClick={handleSubmit} />
           </div>
@@ -109,4 +111,4 @@ const forgetPassword: React.FC = () => {
   );
 };
 
-export default forgetPassword;
+export default ForgetPassword;

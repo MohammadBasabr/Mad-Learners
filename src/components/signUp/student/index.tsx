@@ -8,7 +8,7 @@ import axios from "axios";
 import { number } from "yup";
 import swal from 'sweetalert';
 
-const SignUp: React.FC = () => {
+const StudentSignUp: React.FC = () => {
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -133,12 +133,12 @@ const SignUp: React.FC = () => {
     }
   };
   return (
-    <div className="flex h-[calc(100vh-96px)] w-full items-center justify-center bg-light-primary dark:bg-dark-primary md:h-[calc(100vh-176px)] md:p-6">
+    <div className="flex h-full w-full items-center justify-center bg-light-primary dark:bg-dark-primary md:p-6">
       <form
         onSubmit={submitHandler}
-        className="flex flex-col justify-between border-1 border-black w-full rounded-[10px] border-solid p-2 md:w-[800px]"
+        className="border-1 border-black w-full flex flex-col rounded-[10px] border-solid p-2 md:w-[800px]"
       >
-        <div className="flex flex-row justify-between gap-[30px] w-full">
+        <div className="flex flex-row justify-between gap-1 w-full">
           <span className="w-1/2">
             <fieldset className="mb-[10px] flex h-[75px] flex-col items-center justify-between text-light-content dark:text-dark-content">
               <label
@@ -296,7 +296,7 @@ const SignUp: React.FC = () => {
             </fieldset>                                 
           </span>
         </div>                                              
-        <fieldset className="mb-[10px] mt-20 flex h-[30px] flex-col items-center justify-between text-light-content dark:text-dark-content">
+        <fieldset className="mt-3 flex flex-col items-center justify-between text-light-content dark:text-dark-content">
           <div className="flex w-full flex-row items-center text-center">
             <label
               htmlFor="isAccepted"
@@ -333,4 +333,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default StudentSignUp;

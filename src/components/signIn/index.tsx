@@ -18,7 +18,6 @@ export const SignIn: React.FunctionComponent<SignInProps> = (): JSX.Element => {
   const handleToggleFalse = () => {
     setToggle(false);
   };
-  console.log(toggle);
   return (
     <section className="flex flex-col h-[calc(100vh-96px)] w-full items-center justify-between bg-light-primary dark:bg-dark-primary md:h-[calc(100vh-176px)] md:p-6">
       <div className="w-full h-10 flex lg:hidden text-light-heading dark:text-dark-heading gap-5 uppercase font-bold justify-center items-center">
