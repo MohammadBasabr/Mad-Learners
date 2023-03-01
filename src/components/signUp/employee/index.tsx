@@ -8,7 +8,7 @@ import axios from "axios";
 import { number } from "yup";
 import swal from 'sweetalert';
 
-const SignUp: React.FC = () => {
+const EmployeeSignUp: React.FC = () => {
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -18,7 +18,7 @@ const SignUp: React.FC = () => {
     birthDate: "",
     nationalId: "",
     phoneNumber: "",
-    address: "",
+    address: "22, first street, LA",
     role: "admin",
     profile: "https://s27.picofile.com/file/8460164718/profile.png",
   });
@@ -31,7 +31,6 @@ const SignUp: React.FC = () => {
     birthDate: boolean,
     nationalId: boolean,
     phoneNumber: boolean,
-    address: boolean,
     profile: boolean,    
   } = {
     name: false,
@@ -41,8 +40,7 @@ const SignUp: React.FC = () => {
     isAccepted: false,
     birthDate: false,
     nationalId: false,
-    phoneNumber: false,
-    address: false,   
+    phoneNumber: false,  
     profile: false,     
   };
   let error: {
@@ -54,7 +52,6 @@ const SignUp: React.FC = () => {
     birthDate?: string,
     nationalId?: string,
     phoneNumber?: string,
-    address?: string,
     role?: string,
     profile?: string,    
     
@@ -67,7 +64,6 @@ const SignUp: React.FC = () => {
     birthDate: "",
     nationalId: "",
     phoneNumber: "",
-    address: "",
     role: "",
     profile: "",     
   };
@@ -138,18 +134,17 @@ const SignUp: React.FC = () => {
         birthDate: true,
         nationalId: true,
         phoneNumber: true,
-        address: true,
         profile: true,       
       });
     }
   };
   return (
-    <div className="flex h-[calc(100vh-96px)] w-full items-center justify-center bg-light-primary dark:bg-dark-primary md:h-[calc(100vh-176px)] md:p-6">
+    <div className="flex h-full w-full items-center justify-center bg-light-primary dark:bg-dark-primary md:p-6">
       <form
         onSubmit={submitHandler}
-        className="flex flex-col justify-between border-1 border-black w-full rounded-[10px] border-solid p-2 md:w-[800px]"
+        className="border-1 border-black w-full flex flex-col rounded-[10px] border-solid p-2 md:w-[800px]"
       >
-        <div className="flex flex-row justify-between gap-[30px] w-full">
+        <div className="flex flex-row justify-between gap-1 w-full">
           <span className="w-1/2">
             <fieldset className="mb-[10px] flex h-[75px] flex-col items-center justify-between text-light-content dark:text-dark-content">
               <label
@@ -305,27 +300,9 @@ const SignUp: React.FC = () => {
                 <Error errorName={errors.profile} />
               )}
             </fieldset>                                 
-          </span>
-        </div>  
-        <fieldset className="w-full mb-[10px] flex h-[75px] flex-col items-center justify-between text-light-content dark:text-dark-content">
-              <label
-                htmlFor="address"
-                className="mb-[10px] w-full text-left text-light-content dark:text-dark-content"
-              >
-                Address
-              </label>
-              <Input
-                id="address"
-                type="text"
-                data={data}
-                error={error}
-                touch={touched}
-                onChange={changeHandler}
-                onFocus={touchHandler}
-              />
-              {touched.address && errors.address && <Error errorName={errors.address} />}
-        </fieldset>                                                    
-        <fieldset className="mb-[10px] mt-20 flex h-[30px] flex-col items-center justify-between text-light-content dark:text-dark-content">
+          </span>  
+        </div>                                                  
+        <fieldset className="flex mt-3 flex-col items-center justify-between text-light-content dark:text-dark-content">
           <div className="flex w-full flex-row items-center text-center">
             <label
               htmlFor="isAccepted"
@@ -347,7 +324,7 @@ const SignUp: React.FC = () => {
             <Error errorName={errors.isAccepted} />
           )}
         </fieldset>
-        <div className="mt-10 flex w-full flex-col-reverse items-center justify-between gap-5 md:flex-row">
+        <div className="mt-3 flex w-full flex-col-reverse items-center justify-between gap-5 md:flex-row">
           <Link href={"/signin"}>
             <h2 className="text-xl uppercase text-light-hover">
               already have an account
@@ -362,4 +339,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default EmployeeSignUp;

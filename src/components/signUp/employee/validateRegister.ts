@@ -23,7 +23,6 @@ export const validate = (
     birthDate?: string;
     phoneNumber?: string;
     nationalId?: string;
-    address?: string;
     role?: string,
     profile?: string;    
   } = {
@@ -35,7 +34,6 @@ export const validate = (
     birthDate: "",
     phoneNumber: "",
     nationalId: "",
-    address: "",
     role: "",
     profile: "",     
   };
@@ -67,13 +65,7 @@ export const validate = (
       errors.phoneNumber = "Valid phoneNumber required";
     } else {
       delete errors.phoneNumber;
-    }    
-
-    if (!data.address.trim()) {
-      errors.address = "Valid address required";
-    } else {
-      delete errors.address;
-    } 
+    }
 
     if (!data.birthDate.trim()) {
       errors.birthDate = "Valid birthDate required";
